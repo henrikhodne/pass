@@ -1,0 +1,5 @@
+#!/bin/bash
+pluginpath="$(dirname "$(readlink -f $0)")"
+cd "$pluginpath"
+mkdir -p bin
+ln -sf ../src/password-store.sh bin/pass
