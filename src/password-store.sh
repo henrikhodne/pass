@@ -321,12 +321,13 @@ case "$command" in
 			--) shift; break ;;
 		esac done
 
-		if [[ $err -ne 0 || $# -ne 2 ]]; then
-			echo "Usage: $program $command [--no-symbols,-n] [--clip,-c] [--force,-f] pass-name pass-length"
+		if [[ $err -ne 0 || $# -lt 1 || $# -gt 2 ]]; then
+			echo "Usage: $program $command [--no-symbols,-n] [--clip,-c] [--force,-f] pass-name [pass-length]"
 			exit 1
 		fi
 		path="$1"
 		length="$2"
+		[ -z "$length" ] && length=10
 		if [[ ! $length =~ ^[0-9]+$ ]]; then
 			echo "pass-length \"$length\" must be a number."
 			exit 1
